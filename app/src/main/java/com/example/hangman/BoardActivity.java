@@ -2,6 +2,8 @@ package com.example.hangman;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,8 +18,9 @@ public class BoardActivity extends AppCompatActivity {
     TextView word, letterUsed, chance, result;
     ImageView pict;
     LinearLayout linearLayout;
+    Button playAgain, saveScore;
 
-    String wordRand = "Bangladesz".toLowerCase();
+    String wordRand = "Koza".toLowerCase();
     String allLetterUsed = "";
     String [] slowo = new String[wordRand.length()];
     int mistake = 0;
@@ -31,6 +34,8 @@ public class BoardActivity extends AppCompatActivity {
         pict = findViewById(R.id.img);
         chance = findViewById(R.id.chance);
         result = findViewById(R.id.result);
+        playAgain = findViewById(R.id.playAgain);
+        saveScore = findViewById(R.id.saveScore);
         linearLayout = findViewById(R.id.containerLetter);
 
         String temp = "";
@@ -39,10 +44,26 @@ public class BoardActivity extends AppCompatActivity {
             slowo[i] = "_";
         }
         word.setText(temp);
+
+        playAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BoardActivity.this, BoardActivity.class);
+                finish();
+                startActivity(intent);
+            }
+        });
+
+        saveScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     public void touchLetter(View v){
-        if(mistake < 7) {
+        if(mistake < 7 && Arrays.stream(slowo).anyMatch("_"::equals)) {
             Button b = (Button) v;
             String letter = b.getText().toString().toLowerCase();
             if (!allLetterUsed.contains(letter)) {
@@ -69,13 +90,12 @@ public class BoardActivity extends AppCompatActivity {
 
             if (!Arrays.stream(slowo).anyMatch("_"::equals)) {
                 result.setText("Gratulacje, wygrałeś!");
+                playAgain.setVisibility(1);
+                saveScore.setVisibility(1);
             }
             if (mistake == 6) {
                 result.setText("Bardzo się starałeś lecz z gry wyleciałeś! \n Słowo, którego szukałeś to: " + wordRand);
-                for (int i = 0; i < linearLayout.getChildCount(); i++) {
-                    View view = linearLayout.getChildAt(i);
-                    view.setEnabled(false);
-                }
+                playAgain.setVisibility(1);
                 //TODO co jeżeli przegrałeś
             }
             if (flaga == false) {
@@ -86,6 +106,7 @@ public class BoardActivity extends AppCompatActivity {
             flaga = false;
         }
     }
+
 
     private void updateImg(int play) {
         int resImg = getResources().getIdentifier("pic" + play, "drawable", getPackageName());
