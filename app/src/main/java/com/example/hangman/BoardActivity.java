@@ -11,7 +11,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class BoardActivity extends AppCompatActivity {
 
@@ -19,8 +22,14 @@ public class BoardActivity extends AppCompatActivity {
     ImageView pict;
     LinearLayout linearLayout;
     Button playAgain, saveScore;
+    String [] slowka = {"babcia", "badacz", "banita", "baszta", "bazalt", "beczka", "bilion", "biurko", "bluzka", "bogini", "bolero",
+            "bonsai", "borsuk", "bosman", "bramka", "brzoza", "budowa", "busola", "bylina", "absmak", "absurd", "aceton", "adagio",
+            "adonis", "adwent", "afazja", "afryka", "agenda", "agitka", "agonia", "agrest", "airbag", "akacja", "akcent", "akcept",
+            "akcyza", "akonit", "akonto", "aktywa", "alalia", "alaska", "alegat", "alejka", "alians", "aliant", "alpaga", "altana",
+            "aluzja", "amator", "amfora", "amorek", "amulet", "ananas", "angina", "angora", "anonim", "antena", "antyki", "aparat",
+            "aplauz", "aplika", "apteka", "areszt", "arkada", "arnika", "aromat", "aronia", "asysta", "atleta", "atrapa", "aukcja", "avatar", "awaria", "awatar", "azalia", "azymut"};
 
-    String wordRand = "Koza".toLowerCase();
+    String wordRand = slowka[new Random().nextInt(75)];
     String allLetterUsed = "";
     String [] slowo = new String[wordRand.length()];
     int mistake = 0;
@@ -29,6 +38,7 @@ public class BoardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
+
         word = findViewById(R.id.wordTv);
         letterUsed = findViewById(R.id.wordToFindTv);
         pict = findViewById(R.id.img);
@@ -37,6 +47,8 @@ public class BoardActivity extends AppCompatActivity {
         playAgain = findViewById(R.id.playAgain);
         saveScore = findViewById(R.id.saveScore);
         linearLayout = findViewById(R.id.containerLetter);
+
+
 
         String temp = "";
         for(int i = 0; i < wordRand.length(); i++){
@@ -57,7 +69,8 @@ public class BoardActivity extends AppCompatActivity {
         saveScore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(BoardActivity.this, ScoreActivity.class);
+                startActivity(intent);
             }
         });
     }

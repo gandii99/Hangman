@@ -11,13 +11,17 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     Button newGame, score, exit, changePlayer;
     String name;
     TextView namePlayer;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
+            }
+        });
+
+        score.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ScoreActivity.class);
+                startActivity(intent);
             }
         });
 

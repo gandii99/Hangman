@@ -15,4 +15,16 @@ public class Score {
         this.date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
 }

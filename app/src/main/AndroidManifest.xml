@@ -19,6 +19,8 @@
         </activity>
         <activity android:name=".SelectPlayerActivity">
         </activity>
+        <activity android:name=".ScoreActivity">
+        </activity>
 
     </application>
 
