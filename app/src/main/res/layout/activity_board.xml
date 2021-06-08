@@ -24,8 +24,8 @@
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="194dp"
+        android:layout_height="131dp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="106dp"
         android:layout_marginLeft="106dp"
@@ -58,30 +58,35 @@
     <TextView
 
         android:id="@+id/wordToFindTv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/wordTv"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/wordTv"
-        tools:layout_editor_absoluteX="205dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wordTv" />
 
     <TextView
 
         android:id="@+id/result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="378dp"
+        android:layout_height="51dp"
         android:layout_below="@id/wordTv"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="20dp"
+        android:fontFamily="serif"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/playAgain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wordToFindTv"
-        app:layout_constraintVertical_bias="0.946"
-        tools:layout_editor_absoluteX="202dp" />
+        app:layout_constraintVertical_bias="0.082" />
 
     <Button
         android:id="@+id/playAgain"
@@ -89,11 +94,14 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="monospace"
         android:text="Zagraj ponownie"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:cornerRadius="50dp"
         app:layout_constraintBottom_toTopOf="@+id/containerLetter"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="invisible"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/saveScore"
@@ -101,11 +109,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="monospace"
         android:text="Zapisz wynik"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:cornerRadius="50dp"
         app:layout_constraintBottom_toTopOf="@+id/containerLetter"
-        app:layout_constraintStart_toStartOf="parent"
-        android:visibility="invisible"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/containerLetter"
@@ -113,6 +124,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -126,136 +138,83 @@
             <Button
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginRight="4dp"
                 android:onClick="touchLetter"
-                android:text="A" />
+                android:text="A"
+                android:textSize="10dp"
+                app:cornerRadius="10dp" />
 
             <Button
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginRight="4dp"
                 android:onClick="touchLetter"
-                android:text="B" />
+                android:text="Ą"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
 
             <Button
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginRight="4dp"
                 android:onClick="touchLetter"
-                android:text="C" />
+                android:text="B"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
 
             <Button
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginRight="4dp"
                 android:onClick="touchLetter"
-                android:text="D" />
+                android:text="C"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
 
             <Button
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginRight="4dp"
                 android:onClick="touchLetter"
-                android:text="E" />
+                android:text="Ć"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
 
             <Button
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginRight="4dp"
                 android:onClick="touchLetter"
-                android:text="F" />
+                android:text="D"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
 
             <Button
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginRight="4dp"
                 android:onClick="touchLetter"
-                android:text="G" />
+                android:text="E"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
 
             <Button
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginRight="4dp"
                 android:onClick="touchLetter"
-                android:text="H" />
+                android:text="Ę"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
 
             <Button
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginRight="4dp"
                 android:onClick="touchLetter"
-                android:text="I" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:onClick="touchLetter"
-                android:text="J" />
-
-            <Button
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:onClick="touchLetter"
-                android:text="K" />
-
-            <Button
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:onClick="touchLetter"
-                android:text="L" />
-
-            <Button
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:onClick="touchLetter"
-                android:text="M" />
-
-            <Button
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:onClick="touchLetter"
-                android:text="N" />
-
-            <Button
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:onClick="touchLetter"
-                android:text="O" />
-
-            <Button
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:onClick="touchLetter"
-                android:text="P" />
-
-            <Button
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:onClick="touchLetter"
-                android:text="Q" />
-
-            <Button
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:onClick="touchLetter"
-                android:text="R" />
+                android:text="F"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
 
         </LinearLayout>
 
@@ -263,64 +222,239 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <Button
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginRight="4dp"
                 android:onClick="touchLetter"
-                android:text="S" />
+                android:text="G"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
 
             <Button
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginRight="4dp"
                 android:onClick="touchLetter"
-                android:text="T" />
+                android:text="H"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
 
             <Button
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginRight="4dp"
                 android:onClick="touchLetter"
-                android:text="U" />
+                android:text="I"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
 
             <Button
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginRight="4dp"
                 android:onClick="touchLetter"
-                android:text="V" />
+                android:text="J"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
 
             <Button
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginRight="4dp"
                 android:onClick="touchLetter"
-                android:text="W" />
+                android:text="K"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
 
             <Button
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginRight="4dp"
                 android:onClick="touchLetter"
-                android:text="X" />
+                android:text="L"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
 
             <Button
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginRight="4dp"
                 android:onClick="touchLetter"
-                android:text="Y" />
+                android:text="M"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
 
             <Button
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginRight="4dp"
                 android:onClick="touchLetter"
-                android:text="Z" />
+                android:text="N"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:onClick="touchLetter"
+                android:text="O"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:onClick="touchLetter"
+                android:text="Ó"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:onClick="touchLetter"
+                android:text="P"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:onClick="touchLetter"
+                android:text="R"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:onClick="touchLetter"
+                android:text="Q"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:onClick="touchLetter"
+                android:text="S"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:onClick="touchLetter"
+                android:text="Ś"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:onClick="touchLetter"
+                android:text="T"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:onClick="touchLetter"
+                android:text="U"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:onClick="touchLetter"
+                android:text="V"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:onClick="touchLetter"
+                android:text="W"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:onClick="touchLetter"
+                android:text="X"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:onClick="touchLetter"
+                android:text="Y"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:onClick="touchLetter"
+                android:text="Z"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:onClick="touchLetter"
+                android:text="Ż"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:onClick="touchLetter"
+                android:text="Ź"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"/>
         </LinearLayout>
 
     </LinearLayout>

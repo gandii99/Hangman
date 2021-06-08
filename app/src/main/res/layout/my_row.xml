@@ -3,15 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="70dp">
+    android:layout_height="100dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="80dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:background="#EFEDED">
 
             <TextView
                 android:id="@+id/scorePlayerInput"
@@ -21,7 +23,7 @@
                 android:layout_marginLeft="40dp"
                 android:gravity="center"
                 android:text="TextView"
-                android:textColor="#FF0000"
+                android:textColor="#673AB7"
                 app:layout_constraintStart_toEndOf="@+id/agePlayerInput"
                 tools:layout_editor_absoluteY="19dp" />
 
@@ -33,7 +35,7 @@
                 android:layout_marginLeft="40dp"
                 android:gravity="center"
                 android:text="TextView"
-                android:textColor="#FF0000"
+                android:textColor="#F12415"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/scorePlayerInput"
                 tools:layout_editor_absoluteY="26dp" />
@@ -46,7 +48,8 @@
                 android:layout_marginLeft="20dp"
                 android:gravity="center"
                 android:text="TextView"
-                android:textColor="#FF0000"
+                android:textColor="#0923CA"
+                android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="16dp" />
 
@@ -54,13 +57,13 @@
                 android:id="@+id/agePlayerInput"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="40dp"
-                android:layout_marginLeft="40dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginLeft="44dp"
                 android:gravity="center"
                 android:text="TextView"
-                android:textColor="#FF0000"
+                android:textColor="#2B512D"
                 app:layout_constraintStart_toEndOf="@+id/namePlayerInput"
-                tools:layout_editor_absoluteY="26dp" />
+                tools:layout_editor_absoluteY="16dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
