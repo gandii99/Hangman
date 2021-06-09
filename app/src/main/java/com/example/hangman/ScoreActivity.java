@@ -1,5 +1,7 @@
 package com.example.hangman;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -7,6 +9,7 @@ import android.widget.AdapterView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.hangman.api.HangmanScore;
 import com.example.hangman.api.JsonPlaceHolderApi;
@@ -24,16 +27,31 @@ public class ScoreActivity extends AppCompatActivity implements MyAdapter.OnNote
 
     List<Score> scoreList = new ArrayList<>();
     RecyclerView recyclerView;
+    SwipeRefreshLayout swipeRefreshLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
-
-        download_scores();
-
         recyclerView = findViewById(R.id.recycle_score);
-        putToRecyclerView();
+        swipeRefreshLayout = findViewById(R.id.swiperefreshScoreActivity);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if(!haveNetwork()) {
+                    download_scores();
+                    putToRecyclerView();
+                }
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+        if(haveNetwork()){
+            download_scores();
+
+            putToRecyclerView();
+        }
+
     }
 
     private void putToRecyclerView(){
@@ -85,4 +103,37 @@ public class ScoreActivity extends AppCompatActivity implements MyAdapter.OnNote
         });
         return;
     }
+    private boolean haveNetwork(){
+        boolean have_WIFI = false;
+        boolean have_MobileData = false;
+
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo[] networkInfos=connectivityManager.getAllNetworkInfo();
+
+        for(NetworkInfo info:networkInfos){
+            if(info.getTypeName().equalsIgnoreCase("WIFI")){
+                if(info.isConnected()) {
+                    have_WIFI = true;
+                }
+            }
+            if(info.getTypeName().equalsIgnoreCase("MOBILE")){
+                if(info.isConnected()) {
+                    have_MobileData = true;
+                }
+            }
+
+
+        }
+        if((have_MobileData || have_WIFI) == false){
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setIcon(R.drawable.no_internet_connection);
+        }else{
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setIcon(R.drawable.internet_connection);
+        }
+        return have_MobileData || have_WIFI;
+    }
+
 }

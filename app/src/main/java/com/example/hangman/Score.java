@@ -7,7 +7,7 @@ import java.util.Date;
 public class Score {
     private Player player;
     private int score;
-    private String date = "00/00/0000";
+    private String date = "00.00.0000";
 
     Score(Player player, int score, String date){
         this.player = player;

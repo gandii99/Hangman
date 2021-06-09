@@ -18,4 +18,7 @@ public interface JsonPlaceHolderApi {
              @Query("age") int age,
              @Query("score") int score,
              @Query("date") String date);
+
+    @GET("words")
+    Call<List<HangmanWord>> getWords();
 }
