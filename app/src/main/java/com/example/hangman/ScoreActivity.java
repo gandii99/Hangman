@@ -16,6 +16,9 @@ import com.example.hangman.api.HangmanScore;
 import com.example.hangman.api.JsonPlaceHolderApi;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -91,8 +94,11 @@ public class ScoreActivity extends AppCompatActivity implements MyAdapter.OnNote
             public void onResponse(Call<List<HangmanScore>> call, Response<List<HangmanScore>> response) {
 
                 for(int i=0; i<response.body().size(); i++){
-
                     scoreList.add( new Score(new Player(response.body().get(i).getName(), response.body().get(i).getAge()), response.body().get(i).getScore(),response.body().get(i).getDate() ) );
+                }
+                Collections.sort(scoreList, Comparator.comparingInt(Score::getScore).reversed() );
+                for(int i = 0; i<scoreList.size(); i++){
+                    System.out.println(scoreList.get(i));
                 }
                 putToRecyclerView();
             }

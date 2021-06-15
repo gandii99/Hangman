@@ -90,12 +90,11 @@ public class BoardActivity extends AppCompatActivity {
                         }
 
                         public void onFinish() {
-                            timer.setText("try again");
+                            timer.setText("Czas minął!");
                             flagTimeOut = true;
                         }
 
                     };
-
 
 
         swipeRefreshLayout = findViewById(R.id.swiperefreshBoardActivity);
@@ -193,6 +192,12 @@ public class BoardActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(haveNetwork()){
+                    retrofit = new Retrofit.Builder()
+                            .baseUrl("https://hangmanservergandi.herokuapp.com/api/hangman/")
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                    jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
                     Toast.makeText(BoardActivity.this, "Sprawdzamy połączenie z serwerem!", Toast.LENGTH_SHORT ).show();
                     Call<Void> call = jsonPlaceHolderApi.addScore(name,age, score, new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(Calendar.getInstance().getTime()));
 

@@ -3,67 +3,103 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="80dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="80dp"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="20dp"
-            android:background="#EFEDED">
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#8F8E8E">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginBottom="1dp"
+                android:background="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/scorePlayerInput"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="40dp"
-                android:layout_marginLeft="40dp"
-                android:gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="casual"
+                android:gravity="center|left"
                 android:text="TextView"
                 android:textColor="#673AB7"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/agePlayerInput"
-                tools:layout_editor_absoluteY="19dp" />
+                tools:layout_editor_absoluteY="0dp" />
 
             <TextView
                 android:id="@+id/datePlayerInput"
-                android:layout_width="wrap_content"
+                android:layout_width="91dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="40dp"
-                android:layout_marginLeft="40dp"
-                android:gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:fontFamily="casual"
+                android:gravity="center|left"
                 android:text="TextView"
                 android:textColor="#F12415"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/scorePlayerInput"
-                tools:layout_editor_absoluteY="26dp" />
+                tools:layout_editor_absoluteY="0dp" />
 
             <TextView
                 android:id="@+id/namePlayerInput"
-                android:layout_width="61dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:gravity="center"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="casual"
+                android:gravity="center|left"
                 android:text="TextView"
                 android:textColor="#0923CA"
-                android:textSize="15dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="16dp" />
+                tools:layout_editor_absoluteY="0dp" />
 
             <TextView
                 android:id="@+id/agePlayerInput"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="44dp"
-                android:layout_marginLeft="44dp"
-                android:gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="casual"
+                android:gravity="center|left"
                 android:text="TextView"
                 android:textColor="#2B512D"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/namePlayerInput"
-                tools:layout_editor_absoluteY="16dp" />
+                tools:layout_editor_absoluteY="0dp" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
