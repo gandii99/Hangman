@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         score.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(MainActivity.this, ScoreActivity.class);
                 startActivity(intent);
             }

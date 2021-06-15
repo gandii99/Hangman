@@ -5,6 +5,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -77,7 +78,7 @@ public class ScoreActivity extends AppCompatActivity implements MyAdapter.OnNote
 
     private void download_scores(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.14:8080/api/hangman/")
+                .baseUrl("https://hangmanservergandi.herokuapp.com/api/hangman/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -98,7 +99,7 @@ public class ScoreActivity extends AppCompatActivity implements MyAdapter.OnNote
 
             @Override
             public void onFailure(Call<List<HangmanScore>> call, Throwable t) {
-                return;
+                Toast.makeText(getApplicationContext(), "Problem z połączeniem!", Toast.LENGTH_SHORT).show();
             }
         });
         return;

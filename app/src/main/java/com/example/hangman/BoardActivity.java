@@ -9,11 +9,13 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hangman.api.HangmanScore;
 import com.example.hangman.api.HangmanWord;
@@ -36,7 +38,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BoardActivity extends AppCompatActivity {
 
-    TextView word, letterUsed, chance, result;
+    TextView word, letterUsed, chance, result, timer;
     ImageView pict;
     LinearLayout linearLayout;
     Button playAgain, saveScore;
@@ -47,6 +49,8 @@ public class BoardActivity extends AppCompatActivity {
             "aluzja", "amator", "amfora", "amorek", "amulet", "ananas", "angina", "angora", "anonim", "antena", "antyki", "aparat",
             "aplauz", "aplika", "apteka", "areszt", "arkada", "arnika", "aromat", "aronia", "asysta", "atleta", "atrapa", "aukcja", "avatar", "awaria", "awatar", "azalia", "azymut"));
     int score = 0;
+    int time = 0;
+    boolean flagWaitTimer = false;
     String wordRand = slowka.get(new Random().nextInt(75));
     String allLetterUsed = "";
     String [] slowo = new String[wordRand.length()];
@@ -55,8 +59,10 @@ public class BoardActivity extends AppCompatActivity {
     JsonPlaceHolderApi jsonPlaceHolderApi;
     Retrofit retrofit;
     SwipeRefreshLayout swipeRefreshLayout;
-
-
+    public String checkDigit(int number) {
+        return number <= 9 ? "0" + number : String.valueOf(number);
+    }
+    CountDownTimer waitTimer;
     boolean flagTurnOffKayboard = false;
     boolean flagStartTimer = false;
     @Override
@@ -72,6 +78,23 @@ public class BoardActivity extends AppCompatActivity {
         playAgain = findViewById(R.id.playAgain);
         saveScore = findViewById(R.id.saveScore);
         linearLayout = findViewById(R.id.containerLetter);
+        timer = findViewById(R.id.timer);
+
+
+        waitTimer = new CountDownTimer(60000, 1000) {
+
+                        public void onTick(long millisUntilFinished) {
+                            timer.setText(checkDigit(time) + " s");
+                            time++;
+                        }
+
+                        public void onFinish() {
+                            timer.setText("try again");
+                        }
+
+                    };
+
+
 
         swipeRefreshLayout = findViewById(R.id.swiperefreshBoardActivity);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -86,9 +109,19 @@ public class BoardActivity extends AppCompatActivity {
             }
         });
 
+        wordRand = slowka.get(new Random().nextInt(slowka.size()-1));
+        slowo = new String[wordRand.length()];
+        String temp = "";
+        for(int i = 0; i < wordRand.length(); i++){
+            temp += "_ ";
+            slowo[i] = "_";
+        }
+        word.setText(temp);
+        saveScore.setEnabled(false);
+
         if(haveNetwork()){
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://192.168.0.14:8080/api/hangman/")
+                    .baseUrl("https://hangmanservergandi.herokuapp.com/api/hangman/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
@@ -109,21 +142,25 @@ public class BoardActivity extends AppCompatActivity {
                         slowo[i] = "_";
                     }
                     word.setText(temp);
-                    for(int i = 0; i<slowo.length; i++){
-                        System.out.println(slowo[i] + "totototu");
-                    }
                 }
 
                 @Override
                 public void onFailure(Call<List<HangmanWord>> call, Throwable t) {
-                    return;
+//                    wordRand = slowka.get(new Random().nextInt(slowka.size()-1));
+//                    slowo = new String[wordRand.length()];
+//                    String temp = "";
+//                    for(int i = 0; i < wordRand.length(); i++){
+//                        temp += "_ ";
+//                        slowo[i] = "_";
+//                    }
+//                    word.setText(temp);
                 }
             });
             saveScore.setEnabled(true);
         }else{
             wordRand = slowka.get(new Random().nextInt(slowka.size()-1));
             slowo = new String[wordRand.length()];
-            String temp = "";
+            temp = "";
             for(int i = 0; i < wordRand.length(); i++){
                 temp += "_ ";
                 slowo[i] = "_";
@@ -153,22 +190,31 @@ public class BoardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Call<Void> call = jsonPlaceHolderApi.addScore(name,age, score, new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime()));
+                if(haveNetwork()){
+                    Toast.makeText(BoardActivity.this, "Sprawdzamy połączenie z serwerem!", Toast.LENGTH_SHORT ).show();
+                    Call<Void> call = jsonPlaceHolderApi.addScore(name,age, score, new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(Calendar.getInstance().getTime()));
 
-                call.enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                    call.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            System.out.println("tutuCyc: Pomyślność");
+                            Toast.makeText(BoardActivity.this, "Wynik został zapisany!", Toast.LENGTH_SHORT ).show();
+                            Intent intent = new Intent(BoardActivity.this, ScoreActivity.class);
+                            finish();
+                            startActivity(intent);
+                        }
 
-                    }
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Toast.makeText(BoardActivity.this, "Problem z serwerem!", Toast.LENGTH_SHORT).show();
+                            saveScore.setEnabled(false);
+                        }
+                    });
 
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
 
-                    }
-                });
-
-                Intent intent = new Intent(BoardActivity.this, ScoreActivity.class);
-                startActivity(intent);
+                }else{
+                    saveScore.setEnabled(false);
+                }
             }
         });
 
@@ -177,8 +223,12 @@ public class BoardActivity extends AppCompatActivity {
     }
 
     public void touchLetter(View v){
-
         if(flagTurnOffKayboard == false){
+            if(flagWaitTimer == false){
+                waitTimer.start();
+                System.out.println("wszyedło tutaj");
+                flagWaitTimer = true;
+            }
             Button b = (Button) v;
             String letter = b.getText().toString().toLowerCase();
             if (!allLetterUsed.contains(letter)) {
@@ -198,6 +248,8 @@ public class BoardActivity extends AppCompatActivity {
             }
 
             if(mistake == 0){
+                flagWaitTimer = false;
+                waitTimer.cancel();
                 result.setText("Przegrałeś, szukane słowo to: " + wordRand);
                 playAgain.setVisibility(1);
                 flagTurnOffKayboard = true;
@@ -206,10 +258,12 @@ public class BoardActivity extends AppCompatActivity {
             }
 
             if(!Arrays.toString(slowo).contains("_")){
+                flagWaitTimer = false;
+                waitTimer.cancel();
+                score = ((600-(10*time))*(slowo.length+mistake));
                 result.setText("Gratulacje, wygrałeś!");
                 playAgain.setVisibility(1);
                 saveScore.setVisibility(1);
-                score = new Random().nextInt(500);
                 flagTurnOffKayboard = true;
                 //TODO jeżeli wygrałeś
             }
