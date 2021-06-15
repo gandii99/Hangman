@@ -172,6 +172,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="4dp"
                 android:onClick="touchLetter"
+                android:text="Ł"
+                android:textSize="10dp"
+                app:cornerRadius="10dp" />
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:onClick="touchLetter"
+                android:text="Ń"
+                android:textSize="10dp"
+                app:cornerRadius="10dp" />
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:onClick="touchLetter"
                 android:text="Ć"
                 android:textSize="10dp"
                 app:cornerRadius="10dp" />

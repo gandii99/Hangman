@@ -51,6 +51,7 @@ public class BoardActivity extends AppCompatActivity {
     int score = 0;
     int time = 0;
     boolean flagWaitTimer = false;
+    boolean flagTimeOut = false;
     String wordRand = slowka.get(new Random().nextInt(75));
     String allLetterUsed = "";
     String [] slowo = new String[wordRand.length()];
@@ -90,6 +91,7 @@ public class BoardActivity extends AppCompatActivity {
 
                         public void onFinish() {
                             timer.setText("try again");
+                            flagTimeOut = true;
                         }
 
                     };
@@ -247,14 +249,13 @@ public class BoardActivity extends AppCompatActivity {
                 mistake--;
             }
 
-            if(mistake == 0){
+            if(mistake == 0 || flagTimeOut == true){
                 flagWaitTimer = false;
                 waitTimer.cancel();
                 result.setText("Przegrałeś, szukane słowo to: " + wordRand);
                 playAgain.setVisibility(1);
                 flagTurnOffKayboard = true;
                 //TODO JEŻELI PRZEGRAŁEŚ
-
             }
 
             if(!Arrays.toString(slowo).contains("_")){
